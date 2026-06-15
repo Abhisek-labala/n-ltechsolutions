@@ -1,15 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import {
-  Users, Building2, HeartPulse, Fingerprint, FileText, ShoppingCart,
-  Globe, Smartphone, ArrowRight,
-} from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
-
-const iconMap: Record<string, React.ElementType> = {
-  Users, Building2, HeartPulse, Fingerprint, Globe, ShoppingCart, Smartphone, FileText,
-}
 
 type ProjectData = {
   id: string

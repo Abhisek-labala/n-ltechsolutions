@@ -6,7 +6,7 @@ import { Plus, Pencil, Trash2, X } from "lucide-react"
 type Field = {
   name: string
   label: string
-  type: "text" | "textarea" | "number" | "select"
+  type: "text" | "textarea" | "number" | "select" | "image-grid"
   required?: boolean
   placeholder?: string
   options?: string[]
@@ -88,6 +88,17 @@ export default function AdminTable<T extends { id: string }>({
                     <option key={opt} value={opt}>{opt}</option>
                   ))}
                 </select>
+              ) : field.type === "image-grid" ? (
+                <div className="grid grid-cols-5 gap-2 max-h-[240px] overflow-y-auto p-2 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5">
+                  {field.options?.map((opt) => (
+                    <label key={opt} className="cursor-pointer group">
+                      <input type="radio" name={field.name} value={opt} defaultChecked={false} className="sr-only peer" />
+                      <div className="p-1 rounded-lg border-2 border-transparent peer-checked:border-teal peer-checked:bg-teal/10 group-hover:border-teal/50 transition-all">
+                        <img src={`/images/tech/${opt}.svg`} alt={opt} className="w-full aspect-square rounded-md" />
+                      </div>
+                    </label>
+                  ))}
+                </div>
               ) : (
                 <input
                   type={field.type === "number" ? "number" : "text"}
@@ -140,6 +151,17 @@ export default function AdminTable<T extends { id: string }>({
                     <option key={opt} value={opt}>{opt}</option>
                   ))}
                 </select>
+              ) : field.type === "image-grid" ? (
+                <div className="grid grid-cols-5 gap-2 max-h-[240px] overflow-y-auto p-2 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5">
+                  {field.options?.map((opt) => (
+                    <label key={opt} className="cursor-pointer group">
+                      <input type="radio" name={field.name} value={opt} defaultChecked={false} className="sr-only peer" />
+                      <div className="p-1 rounded-lg border-2 border-transparent peer-checked:border-teal peer-checked:bg-teal/10 group-hover:border-teal/50 transition-all">
+                        <img src={`/images/tech/${opt}.svg`} alt={opt} className="w-full aspect-square rounded-md" />
+                      </div>
+                    </label>
+                  ))}
+                </div>
               ) : (
                 <input
                   type={field.type === "number" ? "number" : "text"}
