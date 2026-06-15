@@ -38,7 +38,6 @@ export default function Products({ projects }: { projects: ProjectData[] }) {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {projects.map((project, index) => {
-            const Icon = iconMap[project.icon] || Users
             const tags: string[] = JSON.parse(project.tags || "[]")
             return (
               <motion.div
@@ -59,7 +58,7 @@ export default function Products({ projects }: { projects: ProjectData[] }) {
                         ))}
                       </div>
                     </div>
-                    <Icon className="absolute top-3 right-3 w-8 h-8 text-white/30" />
+                    <img src={`/images/tech/${project.icon}.svg`} alt={project.icon} className="absolute top-3 right-3 w-8 h-8" />
                   </div>
                   <h3 className="text-base font-semibold text-navy dark:text-white mb-2">{project.title}</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">{project.description}</p>

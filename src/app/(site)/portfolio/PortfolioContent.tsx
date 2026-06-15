@@ -2,12 +2,8 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Users, Building2, HeartPulse, Fingerprint, Globe, ShoppingCart, Smartphone, FileText, ExternalLink } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 import Link from "next/link"
-
-const iconMap: Record<string, React.ElementType> = {
-  Users, Building2, HeartPulse, Fingerprint, Globe, ShoppingCart, Smartphone, FileText,
-}
 
 type ProjectData = {
   id: string
@@ -72,7 +68,6 @@ export default function PortfolioContent({ projects }: { projects: ProjectData[]
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
             >
               {filtered.map((project, index) => {
-                const Icon = iconMap[project.icon] || Users
                 const tags: string[] = JSON.parse(project.tags || "[]")
                 const results: string[] = JSON.parse(project.results || "[]")
                 return (
@@ -88,7 +83,7 @@ export default function PortfolioContent({ projects }: { projects: ProjectData[]
                       <div className={`h-36 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.15),transparent_60%)]" />
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <Icon className="w-14 h-14 text-white/30" />
+                          <img src={`/images/tech/${project.icon}.svg`} alt={project.icon} className="w-14 h-14" />
                         </div>
                         <div className="absolute top-3 left-3">
                           <span className="px-2.5 py-1 text-[10px] font-medium rounded-md bg-white/20 text-white backdrop-blur-sm">
