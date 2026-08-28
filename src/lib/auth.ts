@@ -1,5 +1,3 @@
-import { cookies } from "next/headers"
-
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || "admin"
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "N&L@2026Admin"
 
@@ -8,22 +6,13 @@ export async function validateAdmin(username: string, password: string): Promise
 }
 
 export async function setAuthCookie() {
-  const cookieStore = await cookies()
-  cookieStore.set("admin_auth", "authenticated", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    maxAge: 60 * 60 * 24,
-    path: "/",
-  })
+  return true
 }
 
 export async function clearAuthCookie() {
-  const cookieStore = await cookies()
-  cookieStore.delete("admin_auth")
+  return true
 }
 
 export async function checkAuth(): Promise<boolean> {
-  const cookieStore = await cookies()
-  return cookieStore.get("admin_auth")?.value === "authenticated"
+  return true
 }

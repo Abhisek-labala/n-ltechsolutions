@@ -1,17 +1,11 @@
-"use server"
-
-import { prisma } from "@/lib/prisma"
-import { revalidatePath } from "next/cache"
+import { staticServices } from "@/data/siteData"
 
 export async function getServices() {
-  return prisma.service.findMany({ orderBy: { order: "asc" } })
+  return staticServices
 }
 
 export async function getActiveServices() {
-  return prisma.service.findMany({
-    where: { active: true },
-    orderBy: { order: "asc" },
-  })
+  return staticServices.filter((s) => s.active)
 }
 
 export async function createService(data: {
@@ -22,39 +16,30 @@ export async function createService(data: {
   benefits: string[]
   order: number
 }) {
-  const service = await prisma.service.create({
-    data: {
-      ...data,
-      benefits: JSON.stringify(data.benefits),
-    },
-  })
-  revalidatePath("/")
-  revalidatePath("/admin/services")
-  return service
+  const newService = {
+    id: `cm_${Date.now()}`,
+    ...data,
+    benefits: JSON.stringify(data.benefits),
+    active: true,
+  }
+  return newService
 }
 
 export async function updateService(
   id: string,
-  data: {
-    title?: string
-    description?: string
-    icon?: string
-    gradient?: string
-    benefits?: string[]
-    order?: number
-    active?: boolean
-  }
+  data: Partial<{
+    title: string
+    description: string
+    icon: string
+    gradient: string
+    benefits: string[]
+    order: number
+    active: boolean
+  }>
 ) {
-  const updateData: Record<string, unknown> = { ...data }
-  if (data.benefits) updateData.benefits = JSON.stringify(data.benefits)
-  const service = await prisma.service.update({ where: { id }, data: updateData })
-  revalidatePath("/")
-  revalidatePath("/admin/services")
-  return service
+  return { id, ...data }
 }
 
-export async function deleteService(id: string) {
-  await prisma.service.delete({ where: { id } })
-  revalidatePath("/")
-  revalidatePath("/admin/services")
+export async function deleteService(_id: string) {
+  return true
 }

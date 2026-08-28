@@ -47,14 +47,16 @@ export const metadata: Metadata = {
       "Enterprise software, healthcare IT, and digital transformation. We build websites, mobile apps, CRM, HRMS, HMIS, ABHA & NHCX integration.",
     images: ["/og-image.png"],
   },
+  icons: {
+    icon: "/favicon.svg",
+  },
   robots: { index: true, follow: true },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
-      <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -75,8 +77,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
-      </head>
-      <body className="min-h-full flex flex-col">
         <Providers>
           {children}
         </Providers>

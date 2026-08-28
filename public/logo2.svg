@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" fill="none">
+  <defs>
+    <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#0891B2"/>
+    </linearGradient>
+    <style>
+      .text-dark { fill: #0F172A; }
+      .text-gray { fill: #1E293B; }
+      .text-teal { fill: #06B6D4; }
+      .bg-icon { fill: #0F172A; }
+      .text-white-n { fill: #FFFFFF; }
+      @media (prefers-color-scheme: dark) {
+        .text-dark { fill: #FFFFFF; }
+        .text-gray { fill: #E2E8F0; }
+        .bg-icon { fill: #06B6D4; }
+        .text-white-n { fill: #0F172A; }
+      }
+      .dark .text-dark { fill: #FFFFFF; }
+      .dark .text-gray { fill: #E2E8F0; }
+      .dark .bg-icon { fill: #06B6D4; }
+      .dark .text-white-n { fill: #0F172A; }
+    </style>
+  </defs>
+
+  <!-- Monogram circle -->
+  <rect x="2" y="8" width="38" height="38" rx="10" class="bg-icon"/>
+
+  <!-- Swoosh -->
+  <path d="M-2 27 C-2 14 8 4 22 4 C34 4 42 12 42 23 C42 28 39 32 36 35"
+        stroke="url(#tg)" stroke-width="1.8" fill="none" stroke-linecap="round"
+        stroke-dasharray="0 3 7 3 11 3 7"/>
+
+  <!-- N -->
+  <text x="21" y="37" font-family="'Inter',Arial,Helvetica,sans-serif" font-size="22"
+        font-weight="900" text-anchor="middle" class="text-white-n">N</text>
+  <!-- L -->
+  <text x="21" y="35" font-family="'Inter',Arial,Helvetica,sans-serif" font-size="15"
+        font-weight="800" text-anchor="middle" fill="url(#tg)">L</text>
+
+  <!-- Digital pixels -->
+  <rect x="38" y="6" width="3.5" height="3.5" rx="0.8" fill="url(#tg)" opacity="0.85"/>
+  <rect x="42.5" y="2.5" width="2.5" height="2.5" rx="0.6" fill="url(#tg)" opacity="0.5"/>
+  <rect x="41" y="10.5" width="2" height="2" rx="0.5" fill="url(#tg)" opacity="0.35"/>
+
+  <!-- N&L -->
+  <text x="48" y="27" font-family="'Inter',Arial,Helvetica,sans-serif" font-size="16"
+        font-weight="800" class="text-dark" letter-spacing="0.5">N&amp;L</text>
+
+  <!-- TECH SOLUTIONS -->
+  <text x="48" y="40" font-family="'Inter',Arial,Helvetica,sans-serif" font-size="8"
+        font-weight="700" class="text-gray" letter-spacing="2.5">TECH SOLUTIONS</text>
+
+  <!-- Tagline -->
+  <text x="48" y="48" font-family="'Inter',Arial,Helvetica,sans-serif" font-size="4.8"
+        font-weight="600" class="text-teal" letter-spacing="3">TRANSFORMING IDEAS INTO TECHNOLOGY</text>
+</svg>

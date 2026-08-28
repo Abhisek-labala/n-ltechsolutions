@@ -1,8 +1,7 @@
-import { redirect } from "next/navigation"
-import { checkAuth } from "@/lib/auth"
-import { logoutAction } from "@/actions/auth"
+"use client"
+
 import Link from "next/link"
-import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { LayoutDashboard, FileText, User, Briefcase, MessageSquare, LogOut } from "lucide-react"
 
 const navItems = [
@@ -13,9 +12,13 @@ const navItems = [
   { href: "/admin/enquiries", label: "Enquiries", icon: MessageSquare },
 ]
 
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const authed = await checkAuth()
-  if (!authed) redirect("/admin/login")
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const router = useRouter()
+
+  const handleLogout = (e: React.FormEvent) => {
+    e.preventDefault()
+    router.push("/admin/login")
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-navy-dark flex">
@@ -38,7 +41,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
           ))}
         </nav>
         <div className="p-3 border-t border-gray-100 dark:border-white/5">
-          <form action={logoutAction}>
+          <form onSubmit={handleLogout}>
             <button type="submit" className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-500 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 w-full transition-all">
               <LogOut size={16} />
               Logout

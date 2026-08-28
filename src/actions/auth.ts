@@ -1,5 +1,3 @@
-"use server"
-
 import { validateAdmin, setAuthCookie, clearAuthCookie } from "@/lib/auth"
 import { redirect } from "next/navigation"
 

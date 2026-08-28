@@ -1,10 +1,16 @@
-"use server"
+export interface Enquiry {
+  id: string
+  name: string
+  email: string
+  phone: string
+  service: string
+  message: string
+  read: boolean
+  createdAt: string
+}
 
-import { prisma } from "@/lib/prisma"
-import { revalidatePath } from "next/cache"
-
-export async function getEnquiries() {
-  return prisma.enquiry.findMany({ orderBy: { createdAt: "desc" } })
+export async function getEnquiries(): Promise<Enquiry[]> {
+  return []
 }
 
 export async function createEnquiry(data: {
@@ -13,18 +19,19 @@ export async function createEnquiry(data: {
   phone: string
   service: string
   message: string
-}) {
-  const enquiry = await prisma.enquiry.create({ data })
-  revalidatePath("/admin/enquiries")
-  return enquiry
+}): Promise<Enquiry> {
+  return {
+    id: `enq_${Date.now()}`,
+    ...data,
+    read: false,
+    createdAt: new Date().toISOString(),
+  }
 }
 
-export async function markEnquiryRead(id: string) {
-  await prisma.enquiry.update({ where: { id }, data: { read: true } })
-  revalidatePath("/admin/enquiries")
+export async function markEnquiryRead(_id: string) {
+  return true
 }
 
-export async function deleteEnquiry(id: string) {
-  await prisma.enquiry.delete({ where: { id } })
-  revalidatePath("/admin/enquiries")
+export async function deleteEnquiry(_id: string) {
+  return true
 }

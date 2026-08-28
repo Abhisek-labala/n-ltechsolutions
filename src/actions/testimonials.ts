@@ -1,17 +1,11 @@
-"use server"
-
-import { prisma } from "@/lib/prisma"
-import { revalidatePath } from "next/cache"
+import { staticTestimonials } from "@/data/siteData"
 
 export async function getTestimonials() {
-  return prisma.testimonial.findMany({ orderBy: { order: "asc" } })
+  return staticTestimonials
 }
 
 export async function getActiveTestimonials() {
-  return prisma.testimonial.findMany({
-    where: { active: true },
-    orderBy: { order: "asc" },
-  })
+  return staticTestimonials.filter((t) => t.active)
 }
 
 export async function createTestimonial(data: {
@@ -22,32 +16,28 @@ export async function createTestimonial(data: {
   rating: number
   order: number
 }) {
-  const testimonial = await prisma.testimonial.create({ data })
-  revalidatePath("/")
-  revalidatePath("/admin/testimonials")
-  return testimonial
+  return {
+    id: `ct_${Date.now()}`,
+    ...data,
+    active: true,
+  }
 }
 
 export async function updateTestimonial(
   id: string,
-  data: {
-    quote?: string
-    author?: string
-    role?: string
-    company?: string
-    rating?: number
-    order?: number
-    active?: boolean
-  }
+  data: Partial<{
+    quote: string
+    author: string
+    role: string
+    company: string
+    rating: number
+    order: number
+    active: boolean
+  }>
 ) {
-  const testimonial = await prisma.testimonial.update({ where: { id }, data })
-  revalidatePath("/")
-  revalidatePath("/admin/testimonials")
-  return testimonial
+  return { id, ...data }
 }
 
-export async function deleteTestimonial(id: string) {
-  await prisma.testimonial.delete({ where: { id } })
-  revalidatePath("/")
-  revalidatePath("/admin/testimonials")
+export async function deleteTestimonial(_id: string) {
+  return true
 }

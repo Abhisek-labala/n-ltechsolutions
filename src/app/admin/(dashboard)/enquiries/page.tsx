@@ -1,8 +1,25 @@
-import { getEnquiries, markEnquiryRead, deleteEnquiry } from "@/actions/enquiries"
+"use client"
+
+import { useState, useEffect } from "react"
+import { getEnquiries, markEnquiryRead, deleteEnquiry, Enquiry } from "@/actions/enquiries"
 import { Trash2, Check, Mail, Phone, Calendar } from "lucide-react"
 
-export default async function EnquiriesPage() {
-  const enquiries = await getEnquiries()
+export default function EnquiriesPage() {
+  const [enquiries, setEnquiries] = useState<Enquiry[]>([])
+
+  useEffect(() => {
+    getEnquiries().then(setEnquiries)
+  }, [])
+
+  const handleMarkRead = async (id: string) => {
+    await markEnquiryRead(id)
+    setEnquiries((prev) => prev.map((e) => (e.id === id ? { ...e, read: true } : e)))
+  }
+
+  const handleDelete = async (id: string) => {
+    await deleteEnquiry(id)
+    setEnquiries((prev) => prev.filter((e) => e.id !== id))
+  }
 
   return (
     <div>
@@ -52,23 +69,21 @@ export default async function EnquiriesPage() {
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   {!enquiry.read && (
-                    <form action={async () => {
-                      "use server"
-                      await markEnquiryRead(enquiry.id)
-                    }}>
-                      <button type="submit" className="p-2 rounded-lg bg-teal/10 text-teal hover:bg-teal/20 transition-all" title="Mark as read">
-                        <Check size={14} />
-                      </button>
-                    </form>
-                  )}
-                  <form action={async () => {
-                    "use server"
-                    await deleteEnquiry(enquiry.id)
-                  }}>
-                    <button type="submit" className="p-2 rounded-lg bg-red-50 dark:bg-red-900/10 text-red-500 hover:bg-red-100 dark:hover:bg-red-900/20 transition-all" title="Delete">
-                      <Trash2 size={14} />
+                    <button
+                      onClick={() => handleMarkRead(enquiry.id)}
+                      className="p-2 rounded-lg bg-teal/10 text-teal hover:bg-teal/20 transition-all"
+                      title="Mark as read"
+                    >
+                      <Check size={14} />
                     </button>
-                  </form>
+                  )}
+                  <button
+                    onClick={() => handleDelete(enquiry.id)}
+                    className="p-2 rounded-lg bg-red-50 dark:bg-red-900/10 text-red-500 hover:bg-red-100 dark:hover:bg-red-900/20 transition-all"
+                    title="Delete"
+                  >
+                    <Trash2 size={14} />
+                  </button>
                 </div>
               </div>
             </div>

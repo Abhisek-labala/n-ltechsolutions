@@ -37,7 +37,7 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-700",
         scrolled
-          ? "bg-white/80 dark:bg-navy-dark/80 backdrop-blur-2xl shadow-[0_1px_0_rgba(0,0,0,0.05)] dark:shadow-[0_1px_0_rgba(255,255,255,0.05)]"
+          ? "bg-white/95 dark:bg-black/85 backdrop-blur-2xl border-b border-slate-200/80 dark:border-white/10 shadow-sm"
           : "bg-transparent",
         !scrolled && isHome && "bg-transparent"
       )}
@@ -59,16 +59,16 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 relative",
+                "px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 relative",
                 pathname === link.href
-                  ? "text-teal"
-                  : "text-gray-600 dark:text-gray-400 hover:text-navy dark:hover:text-white"
+                  ? "text-slate-950 dark:text-teal"
+                  : "text-slate-600 dark:text-gray-400 hover:text-slate-950 dark:hover:text-white"
               )}
             >
               {pathname === link.href && (
                 <motion.div
                   layoutId="nav-indicator"
-                  className="absolute inset-0 bg-teal/5 dark:bg-teal/10 rounded-lg"
+                  className="absolute inset-0 bg-slate-100 dark:bg-teal/15 border border-slate-200/90 dark:border-teal/30 rounded-lg shadow-xs"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
@@ -89,7 +89,7 @@ export default function Navbar() {
           )}
 
           <Link href="/contact" className="hidden sm:block">
-            <Button className="bg-navy hover:bg-navy-light text-white dark:bg-teal dark:hover:bg-teal-dark dark:text-navy rounded-full px-5 h-9 text-sm font-medium shadow-lg shadow-navy/10 dark:shadow-teal/10 hover:shadow-xl transition-all duration-300">
+            <Button className="bg-black hover:bg-neutral-800 text-white dark:bg-teal dark:hover:bg-teal-light dark:text-black font-semibold rounded-full px-5 h-9 text-sm shadow-md dark:shadow-[0_0_20px_rgba(0,240,255,0.35)] hover:shadow-lg transition-all duration-300">
               Get Free Consultation
             </Button>
           </Link>
