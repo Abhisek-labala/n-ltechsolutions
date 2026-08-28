@@ -5,19 +5,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion"
 import { ArrowRight, Sparkles, Activity, Layers, ExternalLink, Globe, Zap } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-
-type ProjectData = {
-  id: string
-  title: string
-  description: string
-  icon: string
-  gradient: string
-  neonColor?: string
-  tags: string
-  results: string
-  category: string
-  liveUrl?: string
-}
+import type { ProjectData } from "@/data/siteData"
 
 function ProductCard({ project, index }: { project: ProjectData; index: number }) {
   const tags: string[] = JSON.parse(project.tags || "[]")

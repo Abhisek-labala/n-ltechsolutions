@@ -5,19 +5,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motio
 import { ExternalLink, Sparkles, Activity, Layers, Zap } from "lucide-react"
 import Link from "next/link"
 import CTASection from "@/components/sections/CTASection"
-
-type ProjectData = {
-  id: string
-  title: string
-  description: string
-  icon: string
-  gradient: string
-  neonColor?: string
-  tags: string
-  results: string
-  category: string
-  liveUrl?: string
-}
+import type { ProjectData } from "@/data/siteData"
 
 const categories = ["All", "Healthcare & PSP", "Web Development", "Enterprise & Cloud", "HMIS & ABDM", "CRM & HRMS"]
 
