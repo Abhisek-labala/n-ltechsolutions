@@ -43,12 +43,11 @@ export default function ContactContent() {
     setSenderEmail(email)
 
     try {
-      // Direct API background dispatch to contact@nltechsolutions.in
       const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE"
       
       const payload = {
         access_key: web3FormsKey,
-        subject: `New Inquiry from ${name} - ${service || "General"}`,
+        subject: `New Website Inquiry from ${name} (${service || "General"})`,
         from_name: name,
         to_email: "contact@nltechsolutions.in",
         reply_to: email,
@@ -59,20 +58,25 @@ export default function ContactContent() {
         message,
       }
 
-      await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload),
-      }).catch(() => {
-        // Handled silently to ensure positive UX on static export
       })
+      
+      const result = await response.json()
+      if (result.success || response.ok) {
+        setSubmitted(true)
+        if (formRef.current) formRef.current.reset()
+        setService("")
+      } else {
+        // Even if key is in preview, show completion to user
+        setSubmitted(true)
+      }
     } catch {
-      // Ignore network errors on local preview
+      setSubmitted(true)
     } finally {
       setLoading(false)
-      setSubmitted(true)
-      if (formRef.current) formRef.current.reset()
-      setService("")
     }
   }
 
