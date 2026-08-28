@@ -36,6 +36,7 @@ export interface ProjectData {
   tags: string
   results: string
   liveUrl?: string
+  imageUrl?: string
   neonColor?: string
   order: number
   active: boolean
@@ -240,6 +241,7 @@ export const staticProjects: ProjectData[] = [
     tags: JSON.stringify(["React.js", "Node.js", "Healthcare IT", "Role-Based Access", "Analytics Dashboard"]),
     results: JSON.stringify(["Multi-role patient tracking", "99.9% clinical system uptime", "Integrated patient care workflows"]),
     liveUrl: "https://hridayampsp.com/",
+    imageUrl: "/images/portfolio/hridayam.png",
     order: 1,
     active: true,
     createdAt: defaultDate,
@@ -256,6 +258,7 @@ export const staticProjects: ProjectData[] = [
     tags: JSON.stringify(["Next.js", "PostgreSQL", "Healthcare Compliance", "Custom CRM", "Workflow Automation"]),
     results: JSON.stringify(["Streamlined counselor workflow", "Centralized patient monitoring", "Multi-tier coordinator hierarchy"]),
     liveUrl: "https://suntulanpsp.com/",
+    imageUrl: "/images/portfolio/suntulan.png",
     order: 2,
     active: true,
     createdAt: defaultDate,
@@ -272,6 +275,7 @@ export const staticProjects: ProjectData[] = [
     tags: JSON.stringify(["Next.js", "Tailwind CSS", "Framer Motion", "Cloudinary CDN", "SEO Optimized"]),
     results: JSON.stringify(["Sub-second gallery load times", "Vibrant neon dark UI aesthetics", "Integrated booking & inquiry portal"]),
     liveUrl: "https://studiogfxwebsite.vercel.app/",
+    imageUrl: "/images/portfolio/studiogfx.png",
     order: 3,
     active: true,
     createdAt: defaultDate,
@@ -279,6 +283,23 @@ export const staticProjects: ProjectData[] = [
   },
   {
     id: "cp004",
+    title: "Odishan Foods — FMCG Brand & Food Product Platform",
+    category: "Web Development",
+    description: "Modern brand and product showcase platform for Odishan Foods ('The Taste of New Odisha'), featuring interactive product catalogs, digital distributor outreach, and vibrant brand storytelling.",
+    icon: "web-dev",
+    gradient: "from-[#E11D48] via-[#FF6B00] to-[#FAFF00]",
+    neonColor: "#FF007F",
+    tags: JSON.stringify(["Next.js", "Tailwind CSS", "FMCG Portal", "Responsive Design", "Brand Identity"]),
+    results: JSON.stringify(["High-performance product showcase", "Modern brand aesthetic", "Optimized mobile experience"]),
+    liveUrl: "https://www.odishanfoods.in/",
+    imageUrl: "/images/portfolio/odishanfoods.png",
+    order: 4,
+    active: true,
+    createdAt: defaultDate,
+    updatedAt: defaultDate,
+  },
+  {
+    id: "cp005",
     title: "Abhisek Labala — Full Stack Engineering Portfolio",
     category: "Enterprise & Cloud",
     description: "Interactive portfolio showcasing full-stack enterprise systems, Ayushman Bharat (ABDM) integrated Hospital Management System (HMIS), educational ERPs, and peer-to-peer payment gateways.",
@@ -288,13 +309,14 @@ export const staticProjects: ProjectData[] = [
     tags: JSON.stringify(["React", "Next.js", "Laravel", "ABDM / FHIR", "Docker"]),
     results: JSON.stringify(["10,000+ users served", "99.9% uptime architecture", "Live interactive demos"]),
     liveUrl: "https://abhiseklabalaportfolio-iota.vercel.app/",
-    order: 4,
+    imageUrl: "/images/portfolio/abhiseklabala.png",
+    order: 5,
     active: true,
     createdAt: defaultDate,
     updatedAt: defaultDate,
   },
   {
-    id: "cp005",
+    id: "cp006",
     title: "Multi-Specialty HMIS & Ayushman Bharat (ABDM) Suite",
     category: "HMIS & ABDM",
     description: "Enterprise hospital management platform featuring OPD/IPD modules, pharmacy & lab diagnostic synchronization, and seamless national health stack integration with ABHA creation and NHCX claims.",
@@ -303,13 +325,13 @@ export const staticProjects: ProjectData[] = [
     neonColor: "#BD00FF",
     tags: JSON.stringify(["FastAPI", "React", "ABDM / ABHA", "NHCX Claims", "FHIR Standards"]),
     results: JSON.stringify(["50% faster registration", "10,000+ ABHA accounts created", "National health stack compliant"]),
-    order: 5,
+    order: 6,
     active: true,
     createdAt: defaultDate,
     updatedAt: defaultDate,
   },
   {
-    id: "cp006",
+    id: "cp007",
     title: "Enterprise CRM & Workforce HRMS Solution",
     category: "CRM & HRMS",
     description: "Unified enterprise platform for sales lead management, pipeline analytics, employee attendance, automated payroll, and workflow automation tailored for growing organizations.",
@@ -318,7 +340,7 @@ export const staticProjects: ProjectData[] = [
     neonColor: "#00F0FF",
     tags: JSON.stringify(["Next.js", "PostgreSQL", "Redis", "AWS Cloud", "Role-Based Auth"]),
     results: JSON.stringify(["40% increase in lead conversion", "80% reduction in paperwork", "Real-time analytics"]),
-    order: 6,
+    order: 7,
     active: true,
     createdAt: defaultDate,
     updatedAt: defaultDate,
